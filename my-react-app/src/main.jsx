@@ -1,23 +1,29 @@
 import { createRoot } from 'react-dom/client'
-import Computer from './Computer'
-import RandomObscureFact from './Facts'
+import { Suspense } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import Desktop from './Computers'
+import Home from './Home'
 import './index.css'
 
 function Main() {
   return (
-    <>
-      <div className="Header">
-        <h1>COMPUTER WORLD</h1>
-        <p>This website showcases a collection of my computers! Feel free to look around and learn about computer history!</p>
+    <BrowserRouter>
+      <div className="Navigation">
+        <Suspense fallback={<div>Be patient, the website is loading...</div>}>
+          <nav>
+            <Link to="/">Home</Link> |{" "}
+            <Link to="/computers">My Computers</Link>
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/computers" element={<Desktop />} />
+          </Routes>
+        </Suspense>
       </div>
-    </>
+    </BrowserRouter>
   );
 }
 
 createRoot(document.getElementById('root')).render(
-  <>
-    <Main />
-    <RandomObscureFact />
-    <Computer model1="Dell Optiplex (G4)" model2="Power Macintosh 8100" />
-  </>
-)
+  <Main />
+);
