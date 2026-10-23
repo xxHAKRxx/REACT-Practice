@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { Suspense } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import Desktop from './Computers'
+import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom'
+import { Computers, Desktop, Laptop, Mobile } from './Computers'
 import Home from './Home'
 import './index.css'
 
@@ -16,7 +16,11 @@ function Main() {
           </nav>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/computers" element={<Desktop />} />
+            <Route path="/computers" element={<Computers />}>
+              <Route path="desktops" element={<Desktop />} />
+              <Route path="laptops" element={<Laptop />} />
+              <Route path="phones&pdas" element={<Mobile />} />
+            </Route>
           </Routes>
         </Suspense>
       </div>
