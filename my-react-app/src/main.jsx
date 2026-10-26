@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom'
 import { Computers, Desktop, Laptop, Mobile } from './Computers'
 import Home from './Home'
+import Contacts from './Contacts'
 import './index.css'
 
 function Main() {
@@ -12,7 +13,8 @@ function Main() {
         <Suspense fallback={<div>Be patient, the website is loading...</div>}>
           <nav>
             <Link to="/">Home</Link> |{" "}
-            <Link to="/computers">My Computers</Link>
+            <Link to="/computers">My Computers</Link> |{" "}
+            <Link to="/contacts">Contact Me!</Link>
           </nav>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -21,6 +23,7 @@ function Main() {
               <Route path="laptops" element={<Laptop />} />
               <Route path="phones&pdas" element={<Mobile />} />
             </Route>
+            <Route path="/contacts" element={<Contacts />} />
           </Routes>
         </Suspense>
       </div>
